@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.management.mapper.GoodsMapper">
+    <!--手动指定字段与实体属性的映射关系-->
+    <resultMap id="GoodsMap" type="Goods">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="price" property="price"/>
+        <result column="brand_name" property="brand.brandName"/>
+        <result column="category_name" property="category.categoryName"/>
+        <result column="sales" property="sales"/>
+        <result column="inventory" property="inventory"/>
+        <result column="add_time" property="addTime"/>
+        <result column="update_time," property="updateTime"/>
+        <result column="remarks," property="remarks"/>
+        <result column="is_on_sale," property="is_on_sale"/>
+    </resultMap>
+    <select id="findAll" resultMap="GoodsMap">
+        select id,
+               name,
+               price,
+               brand_name,
+               category_name,
+               sales,
+               inventory,
+               goods.add_time,
+               goods.update_time,
+               remarks,
+               is_on_sale
+        from goods
+                 inner join brand b on goods.b_id = b.brand_id
+                 join category c on c.category_id = goods.c_id
+        where goods.deleted = 0;
+    </select>
+</mapper>
