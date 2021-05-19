@@ -26,6 +26,12 @@
             <version>3.5.7</version>
         </dependency>
 
+        <!--打印控制台表格-->
+        <dependency>
+            <groupId>de.vandermeer</groupId>
+            <artifactId>asciitable</artifactId>
+            <version>0.3.2</version>
+        </dependency>
 
     </dependencies>
 

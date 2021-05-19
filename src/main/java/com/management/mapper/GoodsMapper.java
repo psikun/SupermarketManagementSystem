@@ -10,5 +10,10 @@ import java.util.List;
  */
 
 public interface GoodsMapper {
+    /**
+     * 查询所有商品
+     * @return 商品集合
+     * @throws Exception 抛出异常
+     */
     List<Goods> findAll() throws Exception;
 }
