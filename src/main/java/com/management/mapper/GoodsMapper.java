@@ -15,5 +15,5 @@ public interface GoodsMapper {
      * @return 商品集合
      * @throws Exception 抛出异常
      */
-    List<Goods> findAll() throws Exception;
+    List<Goods> findAllGoods() throws Exception;
 }

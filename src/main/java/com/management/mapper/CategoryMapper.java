@@ -14,5 +14,5 @@ public interface CategoryMapper {
      * @return 类别集合
      * @throws Exception 抛出异常
      */
-    List<Category> findAll() throws Exception;
+    List<Category> findAllCategories() throws Exception;
 }

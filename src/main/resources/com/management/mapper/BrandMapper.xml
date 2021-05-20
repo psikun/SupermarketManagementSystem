@@ -5,7 +5,7 @@
 
 
 <mapper namespace="com.management.mapper.BrandMapper">
-    <select id="findAll" resultType="Brand">
+    <select id="findAllBrands" resultType="Brand">
         select * from brand;
     </select>
 </mapper>

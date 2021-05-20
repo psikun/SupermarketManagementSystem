@@ -18,7 +18,7 @@
         <result column="remarks," property="remarks"/>
         <result column="is_on_sale," property="is_on_sale"/>
     </resultMap>
-    <select id="findAll" resultMap="GoodsMap">
+    <select id="findAllGoods" resultMap="GoodsMap">
         select id,
                name,
                price,

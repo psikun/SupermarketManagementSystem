@@ -14,5 +14,5 @@ public interface BrandMapper {
      * @return 品牌集合
      * @throws Exception 抛出异常
      */
-    List<Brand> findAll() throws Exception;
+    List<Brand> findAllBrands() throws Exception;
 }
