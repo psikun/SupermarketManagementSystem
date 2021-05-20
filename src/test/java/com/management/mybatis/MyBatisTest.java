@@ -50,7 +50,8 @@ public class MyBatisTest {
     public void registerTest() throws IOException {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        mapper.register("test1","test2");
+        int register = mapper.register("mysql", "mysql");
+        System.out.println(register);
         sqlSession.commit();
     }
 
@@ -60,7 +61,23 @@ public class MyBatisTest {
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = mapper.login("admin", "admin");
         System.out.println(user);
+        sqlSession.close();
+    }
 
+    @Test
+    public void insertBrandTest() throws IOException {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        BrandMapper mapper = sqlSession.getMapper(BrandMapper.class);
+        int i = mapper.insertBrand("联想");
+        System.out.println(i);
+    }
+
+    @Test
+    public void findGoodsByBrand() throws IOException {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        GoodsMapper mapper = sqlSession.getMapper(GoodsMapper.class);
+        List<Goods> goods = mapper.findGoodsByCategory("手机");
+        System.out.println(goods);
     }
 }
 

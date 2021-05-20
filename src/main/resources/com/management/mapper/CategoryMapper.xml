@@ -5,7 +5,29 @@
 
 
 <mapper namespace="com.management.mapper.CategoryMapper">
+    <!--  查询所有类别  -->
     <select id="findAllCategories" resultType="Category">
-        select * from category;
+        select *
+        from category;
     </select>
+
+    <!--  按照类别名搜索品 -->
+    <select id="findCategoryByName" parameterType="String" resultType="Brand">
+        select *
+        from category
+        where category_name = #{category_name}
+    </select>
+
+    <!--  新增类别  -->
+    <insert id="insertCategory" parameterType="String">
+        insert into category(category_name)
+        values (#{category_name})
+    </insert>
+
+    <!--  删除类别  -->
+    <update id="deleteCategory" parameterType="int">
+        update category
+        set deleted=1
+        where category_id = #{id}
+    </update>
 </mapper>

@@ -5,7 +5,29 @@
 
 
 <mapper namespace="com.management.mapper.BrandMapper">
+    <!--  查询所有品牌  -->
     <select id="findAllBrands" resultType="Brand">
-        select * from brand;
+        select *
+        from brand;
     </select>
+
+    <!--  按照品牌名搜索品牌  -->
+    <select id="findBrandByName" parameterType="String" resultType="Brand">
+        select *
+        from brand
+        where brand_name = #{brandName}
+    </select>
+
+    <!--  新增品牌  -->
+    <insert id="insertBrand" parameterType="String">
+        insert into brand(brand_name)
+        values (#{brandName})
+    </insert>
+
+    <!--  删除品牌  -->
+    <update id="deleteBrand" parameterType="int">
+        update brand
+        set deleted=1
+        where brand_id = #{id}
+    </update>
 </mapper>

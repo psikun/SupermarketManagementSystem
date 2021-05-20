@@ -28,8 +28,9 @@ public interface UserMapper {
      * 用户注册接口
      * @param username 用户名
      * @param password 密码
+     * @return 是否成功
      */
-    void register(@Param("username") String username, @Param("password") String password);
+    int register(@Param("username") String username, @Param("password") String password);
 
     /**
      * 通过Id查询用户
@@ -48,13 +49,15 @@ public interface UserMapper {
     /**
      * 修改用户权限
      * @param id 用户id
+     * @return 是否成功
      */
-    void chmod(int id);
+    int chmod(int id);
 
     /**
      * 删除用户
      * @param id 用户Id
+     * @return 是否成功
      */
-    void deleteUser(int id);
+    int deleteUser(int id);
 
 }

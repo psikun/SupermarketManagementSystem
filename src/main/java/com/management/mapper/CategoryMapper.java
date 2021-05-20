@@ -1,6 +1,8 @@
 package com.management.mapper;
 
+import com.management.domain.Brand;
 import com.management.domain.Category;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,4 +17,26 @@ public interface CategoryMapper {
      * @throws Exception 抛出异常
      */
     List<Category> findAllCategories() throws Exception;
+
+    /**
+     * 按照类别名查找分类
+     * @param categoryName 分类名
+     * @return 查找的分类
+     */
+    Brand findBrandByName(@Param("CategoryName") String categoryName);
+
+    /**
+     * 添加新分类
+     *
+     * @param categoryName 分类名
+     * @return 是否成功
+     */
+    int insertBrand(@Param("categoryName") String categoryName);
+
+    /**
+     * 删除分类
+     * @param id 类别id
+     * @return 是否成功
+     */
+    int deleteBrand(@Param("id") int id);
 }

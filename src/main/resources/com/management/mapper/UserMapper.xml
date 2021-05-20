@@ -43,7 +43,7 @@
     <update id="chmod" parameterType="int">
         update user
         set is_admin=1
-        where id = #{}
+        where id = #{id}
     </update>
 
     <!--  删除用户  -->

@@ -18,6 +18,8 @@
         <result column="remarks," property="remarks"/>
         <result column="is_on_sale," property="is_on_sale"/>
     </resultMap>
+
+    <!--  查询所有商品  -->
     <select id="findAllGoods" resultMap="GoodsMap">
         select id,
                name,
@@ -35,4 +37,56 @@
                  join category c on c.category_id = goods.c_id
         where goods.deleted = 0;
     </select>
+
+    <!--  商品名搜索商品  -->
+    <select id="findGoodsByName" parameterType="String" resultType="Goods">
+        select *
+        from goods
+        where name = #{name}
+    </select>
+
+    <!--  品牌搜索商品  -->
+    <select id="findGoodsByBrand" parameterType="String" resultMap="GoodsMap">
+        select id,
+               name,
+               price,
+               brand_name,
+               category_name,
+               sales,
+               inventory,
+               goods.add_time,
+               goods.update_time,
+               remarks,
+               is_on_sale
+        from goods
+                 inner join brand b on goods.b_id = b.brand_id
+                 join category c on c.category_id = goods.c_id
+        where goods.deleted = 0
+          and goods.b_id = (select brand_id
+                            from brand
+                            where brand_name = #{brandName});
+    </select>
+
+    <!--  分类搜索商品  -->
+    <select id="findGoodsByCategory" parameterType="String" resultMap="GoodsMap">
+        select id,
+               name,
+               price,
+               brand_name,
+               category_name,
+               sales,
+               inventory,
+               goods.add_time,
+               goods.update_time,
+               remarks,
+               is_on_sale
+        from goods
+                 inner join brand b on goods.b_id = b.brand_id
+                 join category c on c.category_id = goods.c_id
+        where goods.deleted = 0
+          and goods.c_id = (select category_id
+                            from category
+                            where category_name = #{categoryName});
+    </select>
+
 </mapper>

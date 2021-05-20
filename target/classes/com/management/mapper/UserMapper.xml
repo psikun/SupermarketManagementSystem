@@ -5,18 +5,27 @@
 
 
 <mapper namespace="com.management.mapper.UserMapper">
-    <!--查询所有用户-->
+    <!-- 查询所有用户 -->
     <select id="findAllUsers" resultType="User">
         select *
         from user;
     </select>
 
+    <!-- 通过ID查询用户 -->
+    <select id="findUserById" parameterType="int" resultType="User">
+        select *
+        from user
+        where id = #{id}
+    </select>
 
-<!--    <parameterMap id="UserMap" type="User">-->
-<!--        <parameter property="username"/>-->
-<!--        <parameter property="password"/>-->
-<!--    </parameterMap>-->
-    <!--用户登录-->
+    <!-- 通过用户名查询用户 -->
+    <select id="findUserByName" parameterType="String" resultType="User">
+        select *
+        from user
+        where username = #{username}
+    </select>
+
+    <!-- 用户登录 -->
     <select id="login" parameterType="String" resultType="User">
         select *
         from user
@@ -25,8 +34,22 @@
     </select>
 
     <!-- 用户注册 -->
-    <insert id="register" parameterType="User">
+    <insert id="register" parameterType="String">
         insert into user(username, password)
         values (#{username}, #{password})
     </insert>
+
+    <!--  修改用户权限  -->
+    <update id="chmod" parameterType="int">
+        update user
+        set is_admin=1
+        where id = #{id}
+    </update>
+
+    <!--  删除用户  -->
+    <update id="deleteUser" parameterType="int">
+        update user
+        set deleted=1
+        where id = #{id}
+    </update>
 </mapper>
