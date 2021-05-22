@@ -12,16 +12,16 @@
     </select>
 
     <!--  按照类别名搜索品 -->
-    <select id="findCategoryByName" parameterType="String" resultType="Brand">
+    <select id="findCategoryByName" parameterType="String" resultType="Category">
         select *
         from category
-        where category_name = #{category_name}
+        where category_name = #{categoryName}
     </select>
 
     <!--  新增类别  -->
     <insert id="insertCategory" parameterType="String">
         insert into category(category_name)
-        values (#{category_name})
+        values (#{categoryName})
     </insert>
 
     <!--  删除类别  -->

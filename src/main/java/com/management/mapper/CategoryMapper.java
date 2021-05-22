@@ -13,6 +13,7 @@ import java.util.List;
 public interface CategoryMapper {
     /**
      * 查询所有类别
+     *
      * @return 类别集合
      * @throws Exception 抛出异常
      */
@@ -20,10 +21,11 @@ public interface CategoryMapper {
 
     /**
      * 按照类别名查找分类
+     *
      * @param categoryName 分类名
      * @return 查找的分类
      */
-    Brand findBrandByName(@Param("CategoryName") String categoryName);
+    Category findCategoryByName(@Param("categoryName") String categoryName);
 
     /**
      * 添加新分类
@@ -31,10 +33,11 @@ public interface CategoryMapper {
      * @param categoryName 分类名
      * @return 是否成功
      */
-    int insertBrand(@Param("categoryName") String categoryName);
+    int insertCategory(@Param("categoryName") String categoryName);
 
     /**
      * 删除分类
+     *
      * @param id 类别id
      * @return 是否成功
      */

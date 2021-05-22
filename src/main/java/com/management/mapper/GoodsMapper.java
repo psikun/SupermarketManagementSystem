@@ -43,5 +43,11 @@ public interface GoodsMapper {
      */
     List<Goods> findGoodsByCategory(@Param("categoryName") String categoryName);
 
+    /**
+     * 添加商品
+     * @param goods 商品实例
+     * @return 是否添加成功
+     */
+    int insertGoods(Goods goods);
 
 }

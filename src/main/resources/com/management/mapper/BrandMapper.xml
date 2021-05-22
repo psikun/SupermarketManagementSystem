@@ -11,8 +11,11 @@
         from brand;
     </select>
 
+    <resultMap id="BrandMap" type="Brand">
+        <result column="brand_name" property="brandName"/>
+    </resultMap>
     <!--  按照品牌名搜索品牌  -->
-    <select id="findBrandByName" parameterType="String" resultType="Brand">
+    <select id="findBrandByName" parameterType="String" resultMap="BrandMap">
         select *
         from brand
         where brand_name = #{brandName}

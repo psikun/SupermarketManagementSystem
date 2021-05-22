@@ -1,9 +1,11 @@
 package com.management.mybatis;
 
 import com.management.domain.Brand;
+import com.management.domain.Category;
 import com.management.domain.Goods;
 import com.management.domain.User;
 import com.management.mapper.BrandMapper;
+import com.management.mapper.CategoryMapper;
 import com.management.mapper.GoodsMapper;
 import com.management.mapper.UserMapper;
 import com.management.utils.SqlSessionUtils;
@@ -23,9 +25,14 @@ public class MyBatisTest {
     public void brandTest() throws Exception {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         BrandMapper mapper = sqlSession.getMapper(BrandMapper.class);
-        List<Brand> all = mapper.findAllBrands();
+        Brand brand = mapper.findBrandByName("小米");
+
 //      List<Brand> brandList = sqlSession.selectList("brandMapper.findAll");
-        System.out.println(all);
+        System.out.println(brand);
+//        mapper.insertBrand("oppo");
+//        sqlSession.commit();
+
+
         sqlSession.close();
     }
 
@@ -78,6 +85,27 @@ public class MyBatisTest {
         GoodsMapper mapper = sqlSession.getMapper(GoodsMapper.class);
         List<Goods> goods = mapper.findGoodsByCategory("手机");
         System.out.println(goods);
+    }
+
+    @Test
+    public void insertGoodsTest() throws IOException {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        GoodsMapper mapper = sqlSession.getMapper(GoodsMapper.class);
+        CategoryMapper categoryMapper = sqlSession.getMapper(CategoryMapper.class);
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+        Goods goods = new Goods();
+        goods.setName("红米k40");
+        goods.setPrice(6999);
+        Category category = categoryMapper.findCategoryByName("手机");
+        goods.setCategory(category);
+        Brand brand = brandMapper.findBrandByName("小米");
+        System.out.println(category);
+        goods.setBrand(brand);
+        goods.setSales(20);
+        goods.setRemarks("");
+        goods.setInventory(100);
+
+        int i = mapper.insertGoods(goods);
     }
 }
 

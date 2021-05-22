@@ -21,17 +21,7 @@
 
     <!--  查询所有商品  -->
     <select id="findAllGoods" resultMap="GoodsMap">
-        select id,
-               name,
-               price,
-               brand_name,
-               category_name,
-               sales,
-               inventory,
-               goods.add_time,
-               goods.update_time,
-               remarks,
-               is_on_sale
+        select *
         from goods
                  inner join brand b on goods.b_id = b.brand_id
                  join category c on c.category_id = goods.c_id
@@ -47,17 +37,7 @@
 
     <!--  品牌搜索商品  -->
     <select id="findGoodsByBrand" parameterType="String" resultMap="GoodsMap">
-        select id,
-               name,
-               price,
-               brand_name,
-               category_name,
-               sales,
-               inventory,
-               goods.add_time,
-               goods.update_time,
-               remarks,
-               is_on_sale
+        select *
         from goods
                  inner join brand b on goods.b_id = b.brand_id
                  join category c on c.category_id = goods.c_id
@@ -69,17 +49,7 @@
 
     <!--  分类搜索商品  -->
     <select id="findGoodsByCategory" parameterType="String" resultMap="GoodsMap">
-        select id,
-               name,
-               price,
-               brand_name,
-               category_name,
-               sales,
-               inventory,
-               goods.add_time,
-               goods.update_time,
-               remarks,
-               is_on_sale
+        select *
         from goods
                  inner join brand b on goods.b_id = b.brand_id
                  join category c on c.category_id = goods.c_id
@@ -89,4 +59,8 @@
                             where category_name = #{categoryName});
     </select>
 
+<!--  添加商品  -->
+    <insert id="insertGoods" parameterType="Goods">
+        insert into goods(name, price, c_id, b_id, sales, inventory,remarks) values(#{name},#{price},#{category.categoryId},#{brand.brandId}, #{sales}, #{inventory},#{remarks})
+    </insert>
 </mapper>
