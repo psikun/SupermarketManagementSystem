@@ -5,15 +5,23 @@
 
 
 <mapper namespace="com.management.mapper.BrandMapper">
+
+    <!--定义品牌结果Map-->
+    <resultMap id="BrandMap" type="Brand">
+        <result column="brand_name" property="brandName"/>
+        <result column="brand_id" property="brandId"/>
+        <result column="add_time" property="addTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="deleted" property="deleted"/>
+    </resultMap>
+
     <!--  查询所有品牌  -->
-    <select id="findAllBrands" resultType="Brand">
+    <select id="findAllBrands" resultMap="BrandMap">
         select *
         from brand;
     </select>
 
-    <resultMap id="BrandMap" type="Brand">
-        <result column="brand_name" property="brandName"/>
-    </resultMap>
+
     <!--  按照品牌名搜索品牌  -->
     <select id="findBrandByName" parameterType="String" resultMap="BrandMap">
         select *

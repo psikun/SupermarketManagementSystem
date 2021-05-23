@@ -45,9 +45,26 @@ public interface GoodsMapper {
 
     /**
      * 添加商品
+     *
      * @param goods 商品实例
      * @return 是否添加成功
      */
     int insertGoods(Goods goods);
 
+    /**
+     * 删除商品
+     *
+     * @param id 商品id
+     * @return 是否删除成功
+     */
+    int deleteGoods(int id);
+
+    /**
+     * 添加商品备注
+     *
+     * @param remarks 备注
+     * @param id      产品id
+     * @return 是否成功
+     */
+    int addRemark(@Param("remarks") String remarks, @Param("id") int id);
 }

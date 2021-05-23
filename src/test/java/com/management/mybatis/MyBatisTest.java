@@ -10,6 +10,8 @@ import com.management.mapper.GoodsMapper;
 import com.management.mapper.UserMapper;
 import com.management.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -21,80 +23,78 @@ import java.util.List;
  */
 
 public class MyBatisTest {
-    @Test
-    public void brandTest() throws Exception {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-        BrandMapper mapper = sqlSession.getMapper(BrandMapper.class);
-        Brand brand = mapper.findBrandByName("小米");
+    private SqlSession sqlSession;
+    GoodsMapper goodsMapper;
+    CategoryMapper categoryMapper;
+    BrandMapper brandMapper;
+    UserMapper userMapper;
 
-//      List<Brand> brandList = sqlSession.selectList("brandMapper.findAll");
-        System.out.println(brand);
-//        mapper.insertBrand("oppo");
-//        sqlSession.commit();
+    @Before
+    public void before() throws IOException {
+        sqlSession = SqlSessionUtils.getSqlSession();
+        goodsMapper = sqlSession.getMapper(GoodsMapper.class);
+        categoryMapper = sqlSession.getMapper(CategoryMapper.class);
+        brandMapper = sqlSession.getMapper(BrandMapper.class);
+        userMapper = sqlSession.getMapper(UserMapper.class);
 
+    }
 
+    @After
+    public void after() throws IOException {
         sqlSession.close();
     }
 
     @Test
-    public void goodsTest() throws Exception {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-        GoodsMapper mapper = sqlSession.getMapper(GoodsMapper.class);
-        List<Goods> goods = mapper.findAllGoods();
-        System.out.println(goods);
+    public void brandTest() throws Exception {
+        Brand brand = brandMapper.findBrandByName("小米");
+        List<Brand> brands = brandMapper.findAllBrands();
+        List<Category> categories = categoryMapper.findAllCategories();
+        System.out.println(categories);
+        System.out.println(brand);
+        System.out.println(brands);
+    }
 
+    @Test
+    public void goodsTest() throws Exception {
+        List<Goods> goods = goodsMapper.findAllGoods();
+        System.out.println(goods);
     }
 
     @Test
     public void userTest() throws IOException {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        List<User> allUsers = mapper.findAllUsers();
+        List<User> allUsers = userMapper.findAllUsers();
         System.out.println(allUsers);
     }
 
     @Test
     public void registerTest() throws IOException {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        int register = mapper.register("mysql", "mysql");
+        int register = userMapper.register("mysql", "mysql");
         System.out.println(register);
-        sqlSession.commit();
     }
 
     @Test
     public void loginTest() throws IOException {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        User user = mapper.login("admin", "admin");
+        User user = userMapper.login("admin", "admin");
         System.out.println(user);
-        sqlSession.close();
     }
 
     @Test
     public void insertBrandTest() throws IOException {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-        BrandMapper mapper = sqlSession.getMapper(BrandMapper.class);
-        int i = mapper.insertBrand("联想");
+        int i = brandMapper.insertBrand("联想");
         System.out.println(i);
     }
 
     @Test
     public void findGoodsByBrand() throws IOException {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-        GoodsMapper mapper = sqlSession.getMapper(GoodsMapper.class);
-        List<Goods> goods = mapper.findGoodsByCategory("手机");
+        List<Goods> goods = goodsMapper.findGoodsByCategory("手机");
         System.out.println(goods);
     }
 
     @Test
     public void insertGoodsTest() throws IOException {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-        GoodsMapper mapper = sqlSession.getMapper(GoodsMapper.class);
-        CategoryMapper categoryMapper = sqlSession.getMapper(CategoryMapper.class);
-        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+
         Goods goods = new Goods();
-        goods.setName("红米k40");
+        goods.setName("红米k40pro");
         goods.setPrice(6999);
         Category category = categoryMapper.findCategoryByName("手机");
         goods.setCategory(category);
@@ -104,8 +104,14 @@ public class MyBatisTest {
         goods.setSales(20);
         goods.setRemarks("");
         goods.setInventory(100);
+        int i = goodsMapper.insertGoods(goods);
+        System.out.println(i);
+    }
 
-        int i = mapper.insertGoods(goods);
+
+    @Test
+    public void addRemarksTest() {
+        int remark = goodsMapper.addRemark("我试试能不能插入", 1);
     }
 }
 

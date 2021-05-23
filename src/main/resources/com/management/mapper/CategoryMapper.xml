@@ -5,14 +5,23 @@
 
 
 <mapper namespace="com.management.mapper.CategoryMapper">
+    <!--定义品牌结果Map-->
+    <resultMap id="CategoryMap" type="Category">
+        <result column="category_id" property="categoryId"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="add_time" property="addTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="deleted" property="deleted"/>
+    </resultMap>
+
     <!--  查询所有类别  -->
-    <select id="findAllCategories" resultType="Category">
+    <select id="findAllCategories" resultMap="CategoryMap">
         select *
         from category;
     </select>
 
     <!--  按照类别名搜索品 -->
-    <select id="findCategoryByName" parameterType="String" resultType="Category">
+    <select id="findCategoryByName" parameterType="String" resultMap="CategoryMap">
         select *
         from category
         where category_name = #{categoryName}
