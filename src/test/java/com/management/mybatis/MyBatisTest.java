@@ -18,16 +18,18 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * The type My batis test.
+ *
  * @author SiKun
- * @date 2021/05/18/ 11:38
+ * @date 2021 /05/18/ 11:38
  */
-
 public class MyBatisTest {
     private SqlSession sqlSession;
     GoodsMapper goodsMapper;
     CategoryMapper categoryMapper;
     BrandMapper brandMapper;
     UserMapper userMapper;
+
 
     @Before
     public void before() throws IOException {
@@ -71,6 +73,7 @@ public class MyBatisTest {
         int register = userMapper.register("mysql", "mysql");
         System.out.println(register);
     }
+
 
     @Test
     public void loginTest() throws IOException {

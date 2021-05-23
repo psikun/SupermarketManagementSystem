@@ -67,4 +67,6 @@ public interface GoodsMapper {
      * @return 是否成功
      */
     int addRemark(@Param("remarks") String remarks, @Param("id") int id);
+
+
 }

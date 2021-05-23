@@ -16,7 +16,7 @@
         <result column="add_time" property="addTime"/>
         <result column="update_time," property="updateTime"/>
         <result column="remarks," property="remarks"/>
-        <result column="is_on_sale," property="is_on_sale"/>
+        <result column="is_on_sale," property="isOnSale"/>
     </resultMap>
 
     <!--  查询所有商品  -->
@@ -59,6 +59,7 @@
                             where category_name = #{categoryName});
     </select>
 
+
     <!--  添加商品  -->
     <insert id="insertGoods" parameterType="Goods">
         insert into goods(name, price, c_id, b_id, sales, inventory, remarks)
@@ -78,4 +79,6 @@
         set remarks=#{remarks}
         where id = #{id}
     </update>
+
+
 </mapper>

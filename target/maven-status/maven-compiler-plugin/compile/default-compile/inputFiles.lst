@@ -1,0 +1,11 @@
+E:\Codes\Java\SupermarketManagementSystem\src\main\java\com\management\domain\Goods.java
+E:\Codes\Java\SupermarketManagementSystem\src\main\java\com\management\service\SystemStart.java
+E:\Codes\Java\SupermarketManagementSystem\src\main\java\com\management\domain\Brand.java
+E:\Codes\Java\SupermarketManagementSystem\src\main\java\com\management\domain\Category.java
+E:\Codes\Java\SupermarketManagementSystem\src\main\java\com\management\service\Menu.java
+E:\Codes\Java\SupermarketManagementSystem\src\main\java\com\management\domain\User.java
+E:\Codes\Java\SupermarketManagementSystem\src\main\java\com\management\mapper\UserMapper.java
+E:\Codes\Java\SupermarketManagementSystem\src\main\java\com\management\mapper\CategoryMapper.java
+E:\Codes\Java\SupermarketManagementSystem\src\main\java\com\management\mapper\GoodsMapper.java
+E:\Codes\Java\SupermarketManagementSystem\src\main\java\com\management\utils\SqlSessionUtils.java
+E:\Codes\Java\SupermarketManagementSystem\src\main\java\com\management\mapper\BrandMapper.java

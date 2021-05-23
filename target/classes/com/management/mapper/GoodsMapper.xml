@@ -59,8 +59,26 @@
                             where category_name = #{categoryName});
     </select>
 
-<!--  添加商品  -->
+
+    <!--  添加商品  -->
     <insert id="insertGoods" parameterType="Goods">
-        insert into goods(name, price, c_id, b_id, sales, inventory,remarks) values(#{name},#{price},#{category.categoryId},#{brand.brandId}, #{sales}, #{inventory},#{remarks})
+        insert into goods(name, price, c_id, b_id, sales, inventory, remarks)
+        values (#{name}, #{price}, #{category.categoryId}, #{brand.brandId}, #{sales}, #{inventory}, #{remarks})
     </insert>
+
+    <!--  删除商品  -->
+    <update id="deleteGoods">
+        update goods
+        set deleted=1
+        where id = #{id}
+    </update>
+
+    <!--  添加备注  -->
+    <update id="addRemark">
+        update goods
+        set remarks=#{remarks}
+        where id = #{id}
+    </update>
+
+
 </mapper>
