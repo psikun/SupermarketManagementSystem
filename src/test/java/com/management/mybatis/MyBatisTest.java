@@ -59,7 +59,9 @@ public class MyBatisTest {
     @Test
     public void goodsTest() throws Exception {
         List<Goods> goods = goodsMapper.findAllGoods();
-        System.out.println(goods);
+        for (Goods good : goods) {
+            System.out.println(good);
+        }
     }
 
     @Test
@@ -88,7 +90,7 @@ public class MyBatisTest {
     }
 
     @Test
-    public void findGoodsByBrand() throws IOException {
+    public void findGoodsByCategory() throws IOException {
         List<Goods> goods = goodsMapper.findGoodsByCategory("手机");
         System.out.println(goods);
     }

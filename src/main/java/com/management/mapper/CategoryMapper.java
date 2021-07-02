@@ -19,6 +19,9 @@ public interface CategoryMapper {
      */
     List<Category> findAllCategories() throws Exception;
 
+    Category findCategoryById(@Param("id") int id);
+
+
     /**
      * 按照类别名查找分类
      *
@@ -41,5 +44,5 @@ public interface CategoryMapper {
      * @param id 类别id
      * @return 是否成功
      */
-    int deleteBrand(@Param("id") int id);
+    int deleteCategory(@Param("id") int id);
 }

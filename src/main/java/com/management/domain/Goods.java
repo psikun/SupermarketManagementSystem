@@ -1,6 +1,8 @@
 package com.management.domain;
 
 
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.sql.Date;
 
 /**
@@ -24,6 +26,7 @@ public class Goods {
 
     public Goods() {
     }
+
 
     public int getId() {
         return id;
@@ -127,8 +130,8 @@ public class Goods {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", category=" + category.getCategoryName() +
-                ", brand=" + brand.getBrandName() +
+                ", category=" + category +
+                ", brand=" + brand +
                 ", sales=" + sales +
                 ", inventory=" + inventory +
                 ", isOnSale=" + isOnSale +

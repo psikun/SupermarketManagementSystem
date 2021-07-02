@@ -3,20 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
 <mapper namespace="com.management.mapper.GoodsMapper">
     <!--手动指定字段与实体属性的映射关系-->
     <resultMap id="GoodsMap" type="Goods">
         <result column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="price" property="price"/>
-        <result column="brand_name" property="brand.brandName"/>
-        <result column="category_name" property="category.categoryName"/>
-        <result column="sales" property="sales"/>
-        <result column="inventory" property="inventory"/>
         <result column="add_time" property="addTime"/>
         <result column="update_time," property="updateTime"/>
-        <result column="remarks," property="remarks"/>
         <result column="is_on_sale," property="isOnSale"/>
+        <association property="category" column="c_id" resultMap="com.management.mapper.CategoryMapper.CategoryMap">
+        </association>
+        <association property="brand" column="b_id" resultMap="com.management.mapper.BrandMapper.BrandMap">
+        </association>
     </resultMap>
 
     <!--  查询所有商品  -->
@@ -29,9 +29,11 @@
     </select>
 
     <!--  商品名搜索商品  -->
-    <select id="findGoodsByName" parameterType="String" resultType="Goods">
+    <select id="findGoodsByName" parameterType="String" resultMap="GoodsMap">
         select *
         from goods
+                 inner join brand b on goods.b_id = b.brand_id
+                 join category c on c.category_id = goods.c_id
         where name = #{name}
     </select>
 

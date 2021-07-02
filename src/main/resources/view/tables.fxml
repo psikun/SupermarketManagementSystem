@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0"
+         prefWidth="1400.0" rotateGraphic="true" side="LEFT" style="-fx-background-color: #9fcf86;"
+         tabClosingPolicy="ALL_TABS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="com.management.controllers.TableController">
+    <tabs>
+        <Tab closable="false" text="商品">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <Button layoutX="203.0" layoutY="-2.0" mnemonicParsing="false" prefWidth="78.0" text="添加商品"/>
+                        <Button layoutX="300.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="78.0" text="删除"/>
+                        <Button layoutX="450.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="78.0" text="刷新"/>
+                        <Text fontSmoothingType="LCD" layoutX="49.0" layoutY="25.0" strokeType="OUTSIDE"
+                              strokeWidth="0.0" text="欢迎您">
+                            <font>
+                                <Font size="19.0"/>
+                            </font>
+                        </Text>
+                        <ScrollBar layoutX="1356.0" layoutY="38.0" orientation="VERTICAL" prefHeight="812.0"
+                                   prefWidth="14.0"/>
+                        <TableView fx:id="goodsTable" layoutY="35.0" prefHeight="800.0" prefWidth="1300.0"
+                                   style="-fx-background-color: #fffae8; -fx-border-color: #2e62cd;">
+                            <columns>
+                                <TableColumn fx:id="goodsID" prefWidth="67.73331713676453" sortable="false"
+                                             text="商品编号"/>
+                                <TableColumn fx:id="goodsName" prefWidth="134.39998626708984" sortable="false"
+                                             text="商品名称"/>
+                                <TableColumn fx:id="goodsPrice" prefWidth="82.66671752929688" sortable="false"
+                                             text="价格"/>
+                                <TableColumn fx:id="goodsCategory" prefWidth="78.66659545898438" sortable="false"
+                                             text="分类"/>
+                                <TableColumn fx:id="goodsBrand" prefWidth="66.93331909179688" sortable="false"
+                                             text="品牌"/>
+                                <TableColumn fx:id="goodsSales" minWidth="0.0" prefWidth="74.66659545898438"
+                                             sortable="false" text="销售量"/>
+                                <TableColumn fx:id="goodsInventory" prefWidth="72.533447265625" sortable="false"
+                                             text="库存"/>
+                                <TableColumn fx:id="goodsIsOnSale" prefWidth="73.5999755859375" sortable="false"
+                                             text="销售状态"/>
+                                <TableColumn fx:id="goodsAddTime" prefWidth="117.333251953125" sortable="false"
+                                             text="上架时间"/>
+                                <TableColumn fx:id="goodsUpdateTime" prefWidth="152.800048828125" sortable="false"
+                                             text="更新时间"/>
+                                <TableColumn fx:id="goodsRemarks" prefWidth="201.06646728515625" sortable="false"
+                                             text="备注"/>
+                                <TableColumn fx:id="goodsDeleted" minWidth="0.0" prefWidth="98.93328857421875"
+                                             sortable="false" text="是否删除"/>
+                            </columns>
+                        </TableView>
+                        <Button fx:id="seachButton" layoutX="570.0" layoutY="2.0" mnemonicParsing="false"
+                                onAction="#findGoods" text="搜索"/>
+                        <TextField fx:id="goodsNameInput" layoutX="620.0" layoutY="2.0" promptText="请输入商品名称"/>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab closable="false" text="分类">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <TableView layoutX="-6.0" layoutY="37.0" prefHeight="818.0" prefWidth="1369.0">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="分类编号"/>
+                                <TableColumn prefWidth="75.0" text="种类名称"/>
+                                <TableColumn prefWidth="75.0" text="添加时间"/>
+                                <TableColumn prefWidth="75.0" text="更新时间"/>
+                                <TableColumn prefWidth="75.0" text="是否删除"/>
+                            </columns>
+                        </TableView>
+                        <Button layoutX="215.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="82.0" text="添加"/>
+                        <Button layoutX="328.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="82.0" text="删除"/>
+                        <Button layoutX="445.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="82.0" text="刷新"/>
+                        <Text fontSmoothingType="LCD" layoutX="14.0" layoutY="23.0" strokeType="OUTSIDE"
+                              strokeWidth="0.0" text="欢迎您">
+                            <font>
+                                <Font size="19.0"/>
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab closable="false" text="品牌">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <TableView layoutX="-6.0" layoutY="37.0" prefHeight="818.0" prefWidth="1369.0">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="品牌编号"/>
+                                <TableColumn prefWidth="75.0" text="品牌名称"/>
+                                <TableColumn prefWidth="75.0" text="添加时间"/>
+                                <TableColumn prefWidth="75.0" text="更新时间"/>
+                                <TableColumn prefWidth="75.0" text="是否删除"/>
+                            </columns>
+                        </TableView>
+                        <Button layoutX="215.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" text="添加"/>
+                        <Button layoutX="328.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="82.0" text="删除"/>
+                        <Button layoutX="445.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="82.0" text="刷新"/>
+                        <Text fontSmoothingType="LCD" layoutX="14.0" layoutY="23.0" strokeType="OUTSIDE"
+                              strokeWidth="0.0" text="欢迎您">
+                            <font>
+                                <Font size="19.0"/>
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab closable="false" text="用户">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <TableView layoutX="-6.0" layoutY="37.0" prefHeight="818.0" prefWidth="1369.0">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="用户编号"/>
+                                <TableColumn prefWidth="75.0" text="用户名"/>
+                                <TableColumn prefWidth="75.0" text="用户密码"/>
+                                <TableColumn prefWidth="75.0" text="身份权限"/>
+                                <TableColumn prefWidth="75.0" text="是否删除"/>
+                            </columns>
+                        </TableView>
+                        <Button layoutX="215.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="82.0" text="添加"/>
+                        <Button layoutX="328.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="82.0" text="删除"/>
+                        <Button layoutX="445.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="82.0" text="刷新"/>
+                        <Text fontSmoothingType="LCD" layoutX="14.0" layoutY="23.0" strokeType="OUTSIDE"
+                              strokeWidth="0.0" text="欢迎您">
+                            <font>
+                                <Font size="19.0"/>
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
