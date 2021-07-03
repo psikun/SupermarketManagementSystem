@@ -20,9 +20,12 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
-                        <Button layoutX="203.0" layoutY="-2.0" mnemonicParsing="false" prefWidth="78.0" text="添加商品"/>
-                        <Button layoutX="300.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="78.0" text="删除"/>
-                        <Button layoutX="450.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="78.0" text="刷新"/>
+                        <Button fx:id="insertGoods" layoutX="200.0" layoutY="6.0" mnemonicParsing="false"
+                                onAction="#insertGoods" prefWidth="78.0" text="添加商品"/>
+                        <Button layoutX="300.0" mnemonicParsing="false" onAction="#deleteGoods" prefHeight="36.0"
+                                prefWidth="78.0" text="确认删除"/>
+                        <Button layoutX="450.0" mnemonicParsing="false" onAction="#refresh" prefHeight="36.0"
+                                prefWidth="78.0" text="刷新"/>
                         <Text fontSmoothingType="LCD" layoutX="49.0" layoutY="25.0" strokeType="OUTSIDE"
                               strokeWidth="0.0" text="欢迎您">
                             <font>
@@ -31,38 +34,36 @@
                         </Text>
                         <ScrollBar layoutX="1356.0" layoutY="38.0" orientation="VERTICAL" prefHeight="812.0"
                                    prefWidth="14.0"/>
-                        <TableView fx:id="goodsTable" layoutY="35.0" prefHeight="800.0" prefWidth="1300.0"
+                        <TableView fx:id="goodsTable" layoutY="35.0"
                                    style="-fx-background-color: #fffae8; -fx-border-color: #2e62cd;">
                             <columns>
-                                <TableColumn fx:id="goodsID" prefWidth="67.73331713676453" sortable="false"
+                                <TableColumn fx:id="goodsDelete" prefWidth="75.0" sortable="false" text="删除"/>
+                                <TableColumn fx:id="goodsID" prefWidth="125.59999918937683" sortable="false"
                                              text="商品编号"/>
-                                <TableColumn fx:id="goodsName" prefWidth="134.39998626708984" sortable="false"
+                                <TableColumn fx:id="goodsName" prefWidth="120.00009155273438" sortable="false"
                                              text="商品名称"/>
-                                <TableColumn fx:id="goodsPrice" prefWidth="82.66671752929688" sortable="false"
-                                             text="价格"/>
-                                <TableColumn fx:id="goodsCategory" prefWidth="78.66659545898438" sortable="false"
+                                <TableColumn fx:id="goodsPrice" prefWidth="64.800048828125" sortable="false" text="价格"/>
+                                <TableColumn fx:id="goodsCategory" prefWidth="86.4000244140625" sortable="false"
                                              text="分类"/>
-                                <TableColumn fx:id="goodsBrand" prefWidth="66.93331909179688" sortable="false"
-                                             text="品牌"/>
-                                <TableColumn fx:id="goodsSales" minWidth="0.0" prefWidth="74.66659545898438"
+                                <TableColumn fx:id="goodsBrand" prefWidth="91.199951171875" sortable="false" text="品牌"/>
+                                <TableColumn fx:id="goodsSales" minWidth="0.0" prefWidth="82.4000244140625"
                                              sortable="false" text="销售量"/>
-                                <TableColumn fx:id="goodsInventory" prefWidth="72.533447265625" sortable="false"
+                                <TableColumn fx:id="goodsInventory" prefWidth="99.20013427734375" sortable="false"
                                              text="库存"/>
-                                <TableColumn fx:id="goodsIsOnSale" prefWidth="73.5999755859375" sortable="false"
+                                <TableColumn fx:id="goodsIsOnSale" prefWidth="78.4000244140625" sortable="false"
                                              text="销售状态"/>
-                                <TableColumn fx:id="goodsAddTime" prefWidth="117.333251953125" sortable="false"
+                                <TableColumn fx:id="goodsAddTime" prefWidth="76.7999267578125" sortable="false"
                                              text="上架时间"/>
-                                <TableColumn fx:id="goodsUpdateTime" prefWidth="152.800048828125" sortable="false"
+                                <TableColumn fx:id="goodsUpdateTime" prefWidth="109.59991455078125" sortable="false"
                                              text="更新时间"/>
                                 <TableColumn fx:id="goodsRemarks" prefWidth="201.06646728515625" sortable="false"
                                              text="备注"/>
-                                <TableColumn fx:id="goodsDeleted" minWidth="0.0" prefWidth="98.93328857421875"
-                                             sortable="false" text="是否删除"/>
                             </columns>
                         </TableView>
                         <Button fx:id="seachButton" layoutX="570.0" layoutY="2.0" mnemonicParsing="false"
                                 onAction="#findGoods" text="搜索"/>
                         <TextField fx:id="goodsNameInput" layoutX="620.0" layoutY="2.0" promptText="请输入商品名称"/>
+                        <Button layoutX="395.0" layoutY="6.0" mnemonicParsing="false" text="保存"/>
                     </children>
                 </AnchorPane>
             </content>

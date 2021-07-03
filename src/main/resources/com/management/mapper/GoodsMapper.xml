@@ -11,8 +11,9 @@
         <result column="name" property="name"/>
         <result column="price" property="price"/>
         <result column="add_time" property="addTime"/>
-        <result column="update_time," property="updateTime"/>
-        <result column="is_on_sale," property="isOnSale"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_on_sale" property="onSale"/>
+        <result column="deleted" property="deleted"/>
         <association property="category" column="c_id" resultMap="com.management.mapper.CategoryMapper.CategoryMap">
         </association>
         <association property="brand" column="b_id" resultMap="com.management.mapper.BrandMapper.BrandMap">
@@ -34,7 +35,7 @@
         from goods
                  inner join brand b on goods.b_id = b.brand_id
                  join category c on c.category_id = goods.c_id
-        where name = #{name}
+        where name like #{name}
     </select>
 
     <!--  品牌搜索商品  -->

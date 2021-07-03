@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+            prefWidth="750.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="38.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: SimHei;"
+            text="请您添加商品" wrappingWidth="548.0000762939453">
+         <font>
+            <Font size="36.0"/>
+         </font>
+      </Text>
+      <TextField layoutX="172.0" layoutY="102.0"/>
+      <TextField layoutX="172.0" layoutY="155.0"/>
+      <Text layoutX="59.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="商品名称："/>
+      <Text layoutX="71.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="价格："/>
+      <Text layoutX="71.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="分类："/>
+      <Text layoutX="71.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="品牌："/>
+      <Text layoutX="65.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="销售量："/>
+      <Text layoutX="71.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="库存："/>
+      <TextField layoutX="173.0" layoutY="200.0"/>
+      <TextField layoutX="173.0" layoutY="246.0"/>
+      <TextField layoutX="172.0" layoutY="381.0"/>
+      <TextField layoutX="172.0" layoutY="330.0"/>
+      <Text layoutX="59.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="在售状态："/>
+      <ChoiceBox layoutX="178.0" layoutY="287.0" prefWidth="150.0"/>
+      <Text layoutX="416.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="备注："/>
+      <TextField layoutX="457.0" layoutY="115.0" prefHeight="262.0" prefWidth="258.0"/>
+      <Button layoutX="558.0" layoutY="392.0" mnemonicParsing="false" text="Button"/>
+   </children>
+</AnchorPane>

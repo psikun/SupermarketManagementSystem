@@ -2,6 +2,7 @@ package com.management.controllers;
 
 import com.management.mapper.UserMapper;
 import com.management.utils.SqlSessionUtils;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

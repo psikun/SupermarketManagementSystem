@@ -48,12 +48,8 @@ public class MyBatisTest {
 
     @Test
     public void brandTest() throws Exception {
-        Brand brand = brandMapper.findBrandByName("小米");
-        List<Brand> brands = brandMapper.findAllBrands();
-        List<Category> categories = categoryMapper.findAllCategories();
-        System.out.println(categories);
-        System.out.println(brand);
-        System.out.println(brands);
+        List<Category> allCategories = categoryMapper.findAllCategories();
+        System.out.println(allCategories);
     }
 
     @Test
