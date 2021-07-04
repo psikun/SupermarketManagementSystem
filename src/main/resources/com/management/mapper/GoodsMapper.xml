@@ -10,6 +10,8 @@
         <result column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="price" property="price"/>
+        <result column="sales" property="sales"/>
+        <result column="inventory" property="inventory"/>
         <result column="add_time" property="addTime"/>
         <result column="update_time" property="updateTime"/>
         <result column="is_on_sale" property="onSale"/>

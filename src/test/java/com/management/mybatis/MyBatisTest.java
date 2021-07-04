@@ -108,11 +108,7 @@ public class MyBatisTest {
         int i = goodsMapper.insertGoods(goods);
         System.out.println(i);
     }
-
-
-    @Test
-    public void addRemarksTest() {
-        int remark = goodsMapper.addRemark("我试试能不能插入", 1);
-    }
 }
+
+
 

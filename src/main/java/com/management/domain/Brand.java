@@ -1,5 +1,9 @@
 package com.management.domain;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.Date;
 
 /**
@@ -8,31 +12,37 @@ import java.util.Date;
  */
 
 public class Brand {
-    private int brandId;
-    private String brandName;
+    private SimpleIntegerProperty brandId = new SimpleIntegerProperty();
+    private SimpleStringProperty brandName = new SimpleStringProperty();
     private Date addTime;
     private Date updateTime;
-    private int deleted;
+    private SimpleBooleanProperty deleted = new SimpleBooleanProperty();
 
     public Brand() {
     }
 
-
-
     public int getBrandId() {
+        return brandId.get();
+    }
+
+    public SimpleIntegerProperty brandIdProperty() {
         return brandId;
     }
 
     public void setBrandId(int brandId) {
-        this.brandId = brandId;
+        this.brandId.set(brandId);
     }
 
     public String getBrandName() {
+        return brandName.get();
+    }
+
+    public SimpleStringProperty brandNameProperty() {
         return brandName;
     }
 
     public void setBrandName(String brandName) {
-        this.brandName = brandName;
+        this.brandName.set(brandName);
     }
 
     public Date getAddTime() {
@@ -51,25 +61,26 @@ public class Brand {
         this.updateTime = updateTime;
     }
 
-    public int getDeleted() {
+    public boolean isDeleted() {
+        return deleted.get();
+    }
+
+    public SimpleBooleanProperty deletedProperty() {
         return deleted;
     }
 
-    public void setDeleted(int deleted) {
-        this.deleted = deleted;
+    public void setDeleted(boolean deleted) {
+        this.deleted.set(deleted);
     }
 
     @Override
     public String toString() {
         return "Brand{" +
                 "brandId=" + brandId +
-                ", brandName='" + brandName + '\'' +
+                ", brandName=" + brandName +
                 ", addTime=" + addTime +
                 ", updateTime=" + updateTime +
                 ", deleted=" + deleted +
                 '}';
     }
 }
-
-
-

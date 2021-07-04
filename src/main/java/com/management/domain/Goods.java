@@ -134,7 +134,6 @@ public class Goods {
         this.remarks.set(remarks);
     }
 
-
     public boolean isOnSale() {
         return onSale.get();
     }
@@ -147,6 +146,9 @@ public class Goods {
         this.onSale.set(onSale);
     }
 
+    public boolean isDeleted() {
+        return deleted.get();
+    }
 
     public SimpleBooleanProperty deletedProperty() {
         return deleted;
@@ -155,7 +157,6 @@ public class Goods {
     public void setDeleted(boolean deleted) {
         this.deleted.set(deleted);
     }
-
 
     @Override
     public String toString() {

@@ -1,5 +1,9 @@
 package com.management.domain;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.Date;
 
 /**
@@ -8,33 +12,37 @@ import java.util.Date;
  */
 
 public class Category {
-    private int categoryId;
-    private String categoryName;
+    private SimpleIntegerProperty categoryId = new SimpleIntegerProperty();
+    private SimpleStringProperty categoryName = new SimpleStringProperty();
     private Date addTime;
     private Date updateTime;
-    private int deleted;
+    private SimpleBooleanProperty deleted = new SimpleBooleanProperty();
 
     public Category() {
     }
 
-    public Category(String categoryName) {
-        this.categoryName = categoryName;
+    public int getCategoryId() {
+        return categoryId.get();
     }
 
-    public int getCategoryId() {
+    public SimpleIntegerProperty categoryIdProperty() {
         return categoryId;
     }
 
     public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+        this.categoryId.set(categoryId);
     }
 
     public String getCategoryName() {
+        return categoryName.get();
+    }
+
+    public SimpleStringProperty categoryNameProperty() {
         return categoryName;
     }
 
     public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+        this.categoryName.set(categoryName);
     }
 
     public Date getAddTime() {
@@ -53,19 +61,23 @@ public class Category {
         this.updateTime = updateTime;
     }
 
-    public int getDeleted() {
+    public boolean isDeleted() {
+        return deleted.get();
+    }
+
+    public SimpleBooleanProperty deletedProperty() {
         return deleted;
     }
 
-    public void setDeleted(int deleted) {
-        this.deleted = deleted;
+    public void setDeleted(boolean deleted) {
+        this.deleted.set(deleted);
     }
 
     @Override
     public String toString() {
         return "Category{" +
                 "categoryId=" + categoryId +
-                ", categoryName='" + categoryName + '\'' +
+                ", categoryName=" + categoryName +
                 ", addTime=" + addTime +
                 ", updateTime=" + updateTime +
                 ", deleted=" + deleted +

@@ -50,6 +50,58 @@
                         <Font size="18.0"/>
                     </font>
                 </Text>
+                <PasswordField fx:id="passwordText" layoutX="99.0" layoutY="353.0" prefHeight="30.0" prefWidth="214.0"
+                               promptText="密码">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </PasswordField>
+
+
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="76.0" layoutY="23.0" pickOnBounds="true"
+                           preserveRatio="true"/>
+                <ImageView fx:id="heardImage" fitHeight="161.0" fitWidth="258.0" layoutX="80.0" layoutY="40.0"
+                           nodeOrientation="INHERIT">
+                    <image>
+                        <Image url="@../images/Supermarket.png"/>
+                    </image>
+                </ImageView>
+                <Text fill="#271a71" layoutX="25.0" layoutY="253.0" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="欢迎登陆超市管理系统" textAlignment="CENTER" wrappingWidth="361.5999755859375">
+                    <font>
+                        <Font size="30.0"/>
+                    </font>
+                </Text>
+                <Label fx:id="messageLabel" alignment="CENTER" disable="true" layoutX="35.0" layoutY="403.0"
+                       prefHeight="30.0" prefWidth="329.0" textAlignment="CENTER" textFill="#d40000" wrapText="true">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Label>
+                <Button fx:id="loginButton" alignment="CENTER" layoutX="114.0" layoutY="458.0" mnemonicParsing="false"
+                        onAction="#login" prefHeight="30.0" prefWidth="156.0" text="登陆" textAlignment="CENTER">
+                    <effect>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.0">
+                            <bumpInput>
+                                <Shadow/>
+                            </bumpInput>
+                            <light>
+                                <Light.Distant>
+                                    <color>
+                                        <Color red="0.9803921580314636" green="0.9058823585510254"
+                                               blue="0.3607843220233917"/>
+                                    </color>
+                                </Light.Distant>
+                            </light>
+                        </Lighting>
+                    </effect>
+                    <cursor>
+                        <Cursor fx:constant="DEFAULT"/>
+                    </cursor>
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Button>
                 <Button fx:id="registerButton" alignment="CENTER" layoutX="114.0" layoutY="509.0"
                         mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="156.0" text="注册"
                         textAlignment="CENTER">
@@ -71,56 +123,6 @@
                             </light>
                         </Lighting>
                     </effect>
-                    <font>
-                        <Font size="15.0"/>
-                    </font>
-                </Button>
-                <PasswordField fx:id="passwordText" layoutX="99.0" layoutY="353.0" prefHeight="30.0" prefWidth="214.0"
-                               promptText="密码">
-                    <font>
-                        <Font size="14.0"/>
-                    </font>
-                </PasswordField>
-                <Label fx:id="messageLabel" alignment="CENTER" disable="true" layoutX="35.0" layoutY="403.0"
-                       prefHeight="30.0" prefWidth="329.0" textAlignment="CENTER" textFill="#d40000" wrapText="true">
-                    <font>
-                        <Font size="15.0"/>
-                    </font>
-                </Label>
-                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="76.0" layoutY="23.0" pickOnBounds="true"
-                           preserveRatio="true"/>
-                <ImageView fx:id="heardImage" fitHeight="161.0" fitWidth="258.0" layoutX="80.0" layoutY="40.0"
-                           nodeOrientation="INHERIT">
-                    <image>
-                        <Image url="@../images/Supermarket.png"/>
-                    </image>
-                </ImageView>
-                <Text fill="#271a71" layoutX="25.0" layoutY="253.0" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="欢迎登陆超市管理系统" textAlignment="CENTER" wrappingWidth="361.5999755859375">
-                    <font>
-                        <Font size="30.0"/>
-                    </font>
-                </Text>
-                <Button fx:id="loginButton" alignment="CENTER" layoutX="114.0" layoutY="458.0" mnemonicParsing="false"
-                        onAction="#login" prefHeight="30.0" prefWidth="156.0" text="登陆" textAlignment="CENTER">
-                    <effect>
-                        <Lighting diffuseConstant="2.0" specularConstant="0.0">
-                            <bumpInput>
-                                <Shadow/>
-                            </bumpInput>
-                            <light>
-                                <Light.Distant>
-                                    <color>
-                                        <Color red="0.9803921580314636" green="0.9058823585510254"
-                                               blue="0.3607843220233917"/>
-                                    </color>
-                                </Light.Distant>
-                            </light>
-                        </Lighting>
-                    </effect>
-                    <cursor>
-                        <Cursor fx:constant="DEFAULT"/>
-                    </cursor>
                     <font>
                         <Font size="15.0"/>
                     </font>

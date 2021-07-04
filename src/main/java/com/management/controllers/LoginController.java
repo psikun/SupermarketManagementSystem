@@ -1,18 +1,19 @@
 package com.management.controllers;
 
+import com.management.domain.User;
 import com.management.mapper.UserMapper;
+import com.management.service.Main;
 import com.management.utils.SqlSessionUtils;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.apache.ibatis.session.SqlSession;
 
@@ -29,12 +30,15 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
+    public static Stage tableStage;
+
     private String username;
 
     private String password;
 
     private UserMapper userMapper;
 
+    public static User user;
 
     @FXML
     private Label messageLabel;
@@ -83,17 +87,21 @@ public class LoginController implements Initializable {
         // 获取连接
         this.getConnection();
         if (!username.equals("") && !password.equals("")) {
-            if (userMapper.login(username, password) != null) {
-                messageLabel.setText("登陆成功！");
-                // 沉睡5ms
-                Thread.sleep(5);
+            user = userMapper.login(username, password);
+            if (user != null) {
+                messageLabel.setText("登陆成功");
+                Thread.sleep(50);
+                // 加载表格窗体
                 Parent tables = FXMLLoader.load(getClass().getResource("/view/tables.fxml"));
-                Scene scene = new Scene(tables, 1400, 850);
-                Stage tableStage = new Stage();
+                Scene scene = new Scene(tables, 1800, 850);
+                tableStage = new Stage();
                 tableStage.setScene(scene);
                 tableStage.setTitle("超市管理系统");
                 tableStage.setResizable(false);
                 tableStage.show();
+
+                // 登陆成功后关闭登陆窗口
+                Main.loginStage.close();
             } else {
                 messageLabel.setText("用户名或密码错误！");
                 usernameText.setText("");

@@ -5,28 +5,37 @@
 
 
 <mapper namespace="com.management.mapper.UserMapper">
+
+    <resultMap id="UserMap" type="User">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="is_admin" property="isAdmin"/>
+        <result column="deleted" property="deleted"/>
+    </resultMap>
+
     <!-- 查询所有用户 -->
-    <select id="findAllUsers" resultType="User">
+    <select id="findAllUsers" resultMap="UserMap">
         select *
         from user;
     </select>
 
     <!-- 通过ID查询用户 -->
-    <select id="findUserById" parameterType="int" resultType="User">
+    <select id="findUserById" parameterType="int" resultMap="UserMap">
         select *
         from user
         where id = #{id}
     </select>
 
     <!-- 通过用户名查询用户 -->
-    <select id="findUserByName" parameterType="String" resultType="User">
+    <select id="findUserByName" parameterType="String" resultMap="UserMap">
         select *
         from user
         where username = #{username}
     </select>
 
     <!-- 用户登录 -->
-    <select id="login" parameterType="String" resultType="User">
+    <select id="login" parameterType="String" resultMap="UserMap">
         select *
         from user
         where username = #{username}
