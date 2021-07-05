@@ -10,6 +10,7 @@ import com.management.mapper.CategoryMapper;
 import com.management.mapper.GoodsMapper;
 import com.management.mapper.UserMapper;
 import com.management.utils.SqlSessionUtils;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -23,11 +24,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.ChoiceBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
+import javafx.util.converter.NumberStringConverter;
 import org.apache.ibatis.session.SqlSession;
 
 
@@ -48,6 +53,7 @@ public class TablesController implements Initializable {
     public static Stage insertStage;
 
     private GoodsMapper goodsMapper;
+    private List<Goods> updateGoods = new ArrayList<>();
 
     @FXML
     private TableView<Goods> goodsTable;
@@ -88,7 +94,7 @@ public class TablesController implements Initializable {
     /**
      * 获取数据库连接
      *
-     * @throws IOException
+     * @throws IOException 数据库连接异常
      */
     public void getConnection() throws IOException {
         // 获取数据库连接
@@ -100,7 +106,7 @@ public class TablesController implements Initializable {
      * 获取所有的商品
      *
      * @return 返回全部商品
-     * @throws Exception
+     * @throws Exception 数据库连接异常
      */
 
     public List<Goods> getAllGoods() throws Exception {
@@ -123,7 +129,7 @@ public class TablesController implements Initializable {
         goodsTable.setEditable(true);
         // 设置单元格的值
 
-        // 设置复选框
+        // 设置删除复选框
         goodsDelete.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Goods, Boolean>, ObservableValue<Boolean>>() {
             @Override
             public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Goods, Boolean> param) {
@@ -131,19 +137,29 @@ public class TablesController implements Initializable {
             }
         });
         goodsDelete.setCellFactory(CheckBoxTableCell.forTableColumn(goodsDelete));
+        // 设置商品编号列
         goodsID.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+        // 设置商品名称列，并设置为可编辑
         goodsName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        goodsName.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        // 设置商品价格列，并设置为可编辑
         goodsPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        goodsPrice.setCellFactory(TextFieldTableCell.<Goods, Double>forTableColumn(new DoubleStringConverter()));
+
+
+        String[] choices = {"在售", "下架"};
+        goodsIsOnSale.setCellFactory(ChoiceBoxTableCell.forTableColumn(choices));
         goodsIsOnSale.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Goods, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Goods, String> param) {
-                boolean onSale = param.getValue().isOnSale();
-                String status = "下架";
-                if (onSale)
-                    status = "在售";
-                return new SimpleStringProperty(status);
+                if (param.getValue().isOnSale())
+                    return new SimpleStringProperty(choices[0]);
+                return new SimpleStringProperty(choices[1]);
             }
         });
+
         //  重写CallBack中的ObservableValue方法,设置分类和品牌的值
         goodsCategory.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Goods, String>, ObservableValue<String>>() {
             @Override
@@ -159,16 +175,25 @@ public class TablesController implements Initializable {
                 return new SimpleStringProperty(brand);
             }
         });
-
+        // 设置商品销量列，并设置为可编辑
         goodsSales.setCellValueFactory(new PropertyValueFactory<>("sales"));
+        goodsSales.setCellFactory(TextFieldTableCell.<Goods, Integer>forTableColumn(new IntegerStringConverter()));
+
+        // 设置商品库存列，并设置为可编辑
         goodsInventory.setCellValueFactory(new PropertyValueFactory<>("inventory"));
+        goodsInventory.setCellFactory(TextFieldTableCell.<Goods, Integer>forTableColumn(new IntegerStringConverter()));
+
+        // 设置商品添加时间和更新时间
         goodsAddTime.setCellValueFactory(new PropertyValueFactory<>("addTime"));
         goodsUpdateTime.setCellValueFactory(new PropertyValueFactory<>("updateTime"));
+
+        // 设置商品备注，并设置为可编辑
+        goodsRemarks.setCellFactory(TextFieldTableCell.forTableColumn());
         goodsRemarks.setCellValueFactory(new PropertyValueFactory<>("remarks"));
+
 
         // 将集合中的值打印至表格
         goodsTable.setItems(teamMembers);
-
     }
 
     /**
@@ -288,7 +313,6 @@ public class TablesController implements Initializable {
      */
     public void refresh(ActionEvent event) throws Exception {
         this.printGoodsTable(getAllGoods());
-        System.out.println(LoginController.user);
     }
 
     /**
@@ -301,4 +325,72 @@ public class TablesController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * 设置表格单元格监听
+     *
+     * @param value 获取表格的值
+     */
+    public void getUpdateValue(TableColumn.CellEditEvent<Goods, ?> value) {
+        // 得到本行商品
+        Goods goods = value.getRowValue();
+        // 获取修改的列
+        String columnName = value.getTableColumn().getId();
+
+        switch (columnName) {
+            case "goodsName":
+                if (value.getNewValue().toString().equals("")) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.titleProperty().set("输入无效");
+                    alert.headerTextProperty().set("商品名称不能为空！");
+                    alert.showAndWait();
+                } else {
+                    goods.setName((String) value.getNewValue());
+                }
+                break;
+            case "goodsPrice":
+                goods.setPrice(Double.parseDouble((value.getNewValue()).toString()));
+                break;
+
+            case "goodsSales":
+                goods.setSales(Integer.parseInt(value.getNewValue().toString()));
+                break;
+
+            case "goodsInventory":
+                goods.setInventory(Integer.parseInt(value.getNewValue().toString()));
+                break;
+
+            case "goodsIsOnSale":
+                goods.setOnSale(Boolean.parseBoolean(((String) value.getNewValue())));
+                break;
+
+            case "goodsRemarks":
+                goods.setRemarks((String) value.getNewValue());
+                break;
+        }
+        updateGoods.add(goods);
+    }
+
+    /**
+     * 保存按钮
+     *
+     * @param event 保存按钮点击事件
+     * @throws Exception 数据库连接异常
+     */
+    public void save(ActionEvent event) throws Exception {
+        if (LoginController.user.isIsAdmin()) {
+            this.getConnection();
+            for (Goods goods : updateGoods) {
+                goodsMapper.updateGoods(goods);
+                this.printGoodsTable(this.getAllGoods());
+            }
+        } else
+            this.warnAuthority();
+
+    }
 }
+
+
+
+
+
+

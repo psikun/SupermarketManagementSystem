@@ -93,7 +93,7 @@ public class LoginController implements Initializable {
                 Thread.sleep(50);
                 // 加载表格窗体
                 Parent tables = FXMLLoader.load(getClass().getResource("/view/tables.fxml"));
-                Scene scene = new Scene(tables, 1800, 850);
+                Scene scene = new Scene(tables, 1380, 850);
                 tableStage = new Stage();
                 tableStage.setScene(scene);
                 tableStage.setTitle("超市管理系统");

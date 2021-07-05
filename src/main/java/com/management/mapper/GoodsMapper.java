@@ -66,7 +66,8 @@ public interface GoodsMapper {
      * @param id      产品id
      * @return 是否成功
      */
+
     int addRemark(@Param("remarks") String remarks, @Param("id") int id);
 
-
+    int updateGoods(Goods goods);
 }

@@ -5,12 +5,11 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="850.0" prefWidth="1800.0" style="-fx-background-color: #b6fee9;"
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="850.0" prefWidth="1380.0" style="-fx-background-color: #b6fee9;"
             xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.management.controllers.TablesController">
     <children>
@@ -29,17 +28,22 @@
             <columns>
                 <TableColumn fx:id="goodsDelete" prefWidth="75.0" sortable="false" text="删除"/>
                 <TableColumn fx:id="goodsID" prefWidth="125.59999918937683" sortable="false" text="商品编号"/>
-                <TableColumn fx:id="goodsName" prefWidth="132.00013732910156" sortable="false" text="商品名称"/>
-                <TableColumn fx:id="goodsPrice" prefWidth="84.7999267578125" sortable="false" text="价格"/>
+                <TableColumn fx:id="goodsName" onEditCommit="#getUpdateValue" prefWidth="132.00013732910156"
+                             sortable="false" text="商品名称"/>
+                <TableColumn fx:id="goodsPrice" onEditCommit="#getUpdateValue" prefWidth="84.7999267578125"
+                             sortable="false" text="价格"/>
                 <TableColumn fx:id="goodsCategory" prefWidth="111.199951171875" sortable="false" text="分类"/>
                 <TableColumn fx:id="goodsBrand" prefWidth="94.39990234375" sortable="false" text="品牌"/>
-                <TableColumn fx:id="goodsSales" minWidth="0.0" prefWidth="82.4000244140625" sortable="false"
-                             text="销售量"/>
-                <TableColumn fx:id="goodsInventory" prefWidth="75.2000732421875" sortable="false" text="库存"/>
-                <TableColumn fx:id="goodsIsOnSale" prefWidth="106.4000244140625" sortable="false" text="销售状态"/>
+                <TableColumn fx:id="goodsSales" minWidth="0.0" onEditCommit="#getUpdateValue"
+                             prefWidth="82.4000244140625" sortable="false" text="销售量"/>
+                <TableColumn fx:id="goodsInventory" onEditCommit="#getUpdateValue" prefWidth="75.2000732421875"
+                             sortable="false" text="库存"/>
+                <TableColumn fx:id="goodsIsOnSale" onEditCommit="#getUpdateValue" prefWidth="106.4000244140625"
+                             sortable="false" text="销售状态"/>
                 <TableColumn fx:id="goodsAddTime" prefWidth="132.0" sortable="false" text="上架时间"/>
                 <TableColumn fx:id="goodsUpdateTime" prefWidth="127.99993896484375" sortable="false" text="更新时间"/>
-                <TableColumn fx:id="goodsRemarks" prefWidth="230.40007324218755" sortable="false" text="备注"/>
+                <TableColumn fx:id="goodsRemarks" onEditCommit="#getUpdateValue" prefWidth="230.40007324218755"
+                             sortable="false" text="备注"/>
             </columns>
         </TableView>
         <Button fx:id="seachButton" layoutX="278.0" layoutY="36.0" mnemonicParsing="false" onAction="#findGoods"
@@ -47,8 +51,8 @@
                 text="搜索商品"/>
         <TextField fx:id="goodsNameInput" layoutX="394.0" layoutY="41.0" prefHeight="23.0" prefWidth="225.0"
                    promptText="请输入商品名称" style="-fx-border-color: #337d56;"/>
-        <Button layoutX="810.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0"
-                style="-fx-background-color: #7ecdb6; -fx-border-color: #337d56;" text="保存"/>
+        <Button fx:id="saveButton" layoutX="810.0" mnemonicParsing="false" onAction="#save" prefHeight="30.0"
+                prefWidth="250.0" style="-fx-background-color: #7ecdb6; -fx-border-color: #337d56;" text="保存"/>
         <TextField fx:id="categoryNameInput" layoutX="785.0" layoutY="41.0" prefHeight="23.0" prefWidth="225.0"
                    promptText="请输入分类名称" style="-fx-border-color: #337d56;"/>
         <TextField fx:id="brandNameInput" layoutX="1156.0" layoutY="40.0" prefHeight="23.0" prefWidth="222.0"
@@ -66,7 +70,5 @@
             </font>
         </Text>
         <Label fx:id="userIdentityLabel" layoutX="121.0" layoutY="41.0" prefHeight="23.0" prefWidth="128.0"/>
-        <ImageView fx:id="Side" fitHeight="850.0" fitWidth="420.0" layoutX="1380.0" layoutY="5.0" pickOnBounds="true"
-                   preserveRatio="true"/>
     </children>
 </AnchorPane>

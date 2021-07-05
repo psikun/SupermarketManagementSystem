@@ -16,6 +16,7 @@
         <result column="update_time" property="updateTime"/>
         <result column="is_on_sale" property="onSale"/>
         <result column="deleted" property="deleted"/>
+        <result column="remarks" property="remarks"/>
         <association property="category" column="c_id" resultMap="com.management.mapper.CategoryMapper.CategoryMap">
         </association>
         <association property="brand" column="b_id" resultMap="com.management.mapper.BrandMapper.BrandMap">
@@ -63,6 +64,17 @@
                             from category
                             where category_name = #{categoryName});
     </select>
+
+    <update id="updateGoods">
+        update goods
+        set name       = #{name},
+            price      = #{price},
+            sales      = #{sales},
+            inventory  = #{inventory},
+            is_on_sale = #{onSale},
+            remarks    = #{remarks}
+        where id = #{id}
+    </update>
 
 
     <!--  添加商品  -->
